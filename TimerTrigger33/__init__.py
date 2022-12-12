@@ -24,20 +24,22 @@ bot = telegram.Bot(token)
 # updater
 updater = Updater(token=token, use_context=True)
 dispatcher = updater.dispatcher
-#봇 
+#봇
 updater.start_polling()
 
 def handler(update, context):
     user_text = update.message.text 
-    if(user_text=="버스"): #사용자가 버스 입력시 동작
+    if user_text=="버스": #사용자가 버스 입력시 동작
         key = 1
         bus_info=bus_data_file.crwl_bus(key)
         bot.send_message(chat_id=id,text=bus_info)
         bot.sendMessage(chat_id=id,text=info_message)
 
+
 #들어간 코드 유지해주는 코드   
 echo_handler = MessageHandler(Filters.text, handler)
 dispatcher.add_handler(echo_handler)
+
 
 def main(mytimer: func.TimerRequest, tablePath:func.Out[str]) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
@@ -62,6 +64,3 @@ def main(mytimer: func.TimerRequest, tablePath:func.Out[str]) -> None:
     }
     print(bus_data)
     tablePath.set(json.dumps(bus_data))
-
-
-

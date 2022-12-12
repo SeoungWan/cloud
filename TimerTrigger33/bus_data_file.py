@@ -22,8 +22,8 @@ def crwl_bus(key):
     #json 파일 형식을 저장
     for i in range(len(jsonObj)):
         bus_number_data[i]='{}'.format(jsonObj[i]['lineno'])
-        first_time_data[i]='{}'.format(jsonObj[i]['lineno'])
-        second_time_data[i]='{}'.format(jsonObj[i]['lineno'])
+        first_time_data[i]='{}'.format(jsonObj[i]['min1'])
+        second_time_data[i]='{}'.format(jsonObj[i]['min2'])
 
     busNo_128 = bus_number_data[0]
     busNo_129 = bus_number_data[1]
@@ -65,7 +65,7 @@ def crwl_bus(key):
     elif key == 1:
         buses=''
         for i in range(len(jsonObj)):
-            msg+='{}\n 첫번째: {}\n 두번째: {}\n'.format(jsonObj[i]['lineno'],jsonObj[i]['min'],jsonObj[i]['min2'])     
+            buses+='{}\n 첫번째도착시간: {}분 \n 두번째도착시간: {}분 \n'.format(jsonObj[i]['lineno'],jsonObj[i]['min1'],jsonObj[i]['min2'])     
         return buses
 
 
